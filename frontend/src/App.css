@@ -1,52 +1,60 @@
-body {
+* {
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* BODY */
+
+body {
   background-color: black;
+  font-family: Arial, Helvetica, sans-serif;
   color: white;
 }
 
 /* NAVBAR */
 
 .navbar {
+  width: 100%;
+  height: 90px;
   background-color: black;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  padding: 15px 40px;
+  padding: 0 60px;
 
   border-bottom: 1px solid gold;
 }
 
 .logo {
   color: gold;
-  font-size: 32px;
+  font-size: 45px;
   font-weight: bold;
 }
 
 .nav-links {
   display: flex;
-  gap: 40px;
   list-style: none;
+  gap: 50px;
 }
 
 .nav-links li {
-  color: white;
-  cursor: pointer;
   font-size: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .nav-links li:hover {
   color: gold;
 }
 
-/* HERO BANNER */
+/* HERO SECTION */
 
 .hero {
   width: 100%;
-  height: 35vh;
-
+  height: 500px;
   overflow: hidden;
 
   display: flex;
@@ -59,27 +67,26 @@ body {
 .hero-image {
   width: 100%;
   height: 100%;
-
-  object-fit: contain;
+  object-fit: cover;
 }
 
 /* COLLECTION SECTION */
 
 .categories-section {
+  width: 100%;
+  padding: 80px 40px;
   text-align: center;
-  padding: 30px;
 }
 
 .category-heading {
+  font-size: 60px;
   color: gold;
-  font-size: 40px;
   margin-bottom: 10px;
 }
 
 .category-text {
-  font-size: 18px;
-  margin-bottom: 40px;
-  color: white;
+  font-size: 24px;
+  margin-bottom: 60px;
 }
 
 /* CARDS */
@@ -87,19 +94,16 @@ body {
 .categories {
   display: flex;
   justify-content: center;
-  gap: 30px;
-
+  gap: 40px;
   flex-wrap: wrap;
 }
 
 .card {
-  width: 250px;
-
+  width: 320px;
   background-color: #111;
 
   border: 1px solid gold;
-
-  border-radius: 12px;
+  border-radius: 15px;
 
   overflow: hidden;
 
@@ -112,56 +116,72 @@ body {
 
 .card img {
   width: 100%;
-  height: 220px;
-
+  height: 300px;
   object-fit: cover;
 }
 
 .card h2 {
-  margin-top: 15px;
-  color: white;
+  margin-top: 20px;
+  font-size: 28px;
 }
 
 .price {
   color: gold;
-  font-size: 22px;
+  font-size: 24px;
+  margin: 15px 0;
 }
 
-/* BUTTON */
-
 .card button {
-  margin: 20px;
+  margin-bottom: 25px;
 
-  padding: 10px 25px;
-
-  border: none;
+  padding: 12px 25px;
 
   background-color: gold;
-
   color: black;
 
-  font-size: 16px;
+  border: none;
+  border-radius: 8px;
 
-  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
 
   cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.card button:hover {
+  background-color: white;
 }
 
 /* FOOTER */
 
 .footer {
-  margin-top: 40px;
-
-  border-top: 1px solid gold;
-
-  padding: 20px;
+  width: 100%;
+  background-color: #111;
 
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
+  padding: 40px 20px;
+
+  margin-top: 80px;
+
+  flex-wrap: wrap;
+}
+
+.footer-box {
   text-align: center;
+  margin: 20px;
 }
 
 .footer-box h3 {
   color: gold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.footer-box p {
+  font-size: 18px;
 }

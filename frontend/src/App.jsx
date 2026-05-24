@@ -1,10 +1,5 @@
 import "./App.css"
-
 import { useEffect, useState } from "react"
-
-import banner1 from "./assets/banner1.jpg"
-import banner2 from "./assets/banner2.jpg"
-import banner3 from "./assets/banner3.jpg"
 
 import ring from "./assets/rings.jpg"
 import necklace from "./assets/necklaces.jpg"
@@ -12,23 +7,44 @@ import earring from "./assets/earrings.jpg"
 
 function App() {
 
-  const banners = [banner1, banner2, banner3]
-
+  const [banners, setBanners] = useState([])
   const [currentImage, setCurrentImage] = useState(0)
+
+  // FETCH BANNERS
 
   useEffect(() => {
 
-    const interval = setInterval(() => {
-
-      setCurrentImage((prev) =>
-        prev === banners.length - 1 ? 0 : prev + 1
-      )
-
-    }, 3000)
-
-    return () => clearInterval(interval)
+    fetch("http://127.0.0.1:8000/api/banners/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        setBanners(data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
 
   }, [])
+
+  // AUTO SLIDER
+
+  useEffect(() => {
+
+    if (banners.length > 0) {
+
+      const interval = setInterval(() => {
+
+        setCurrentImage((prev) =>
+          prev === banners.length - 1 ? 0 : prev + 1
+        )
+
+      }, 3000)
+
+      return () => clearInterval(interval)
+
+    }
+
+  }, [banners])
 
   return (
 
@@ -49,14 +65,25 @@ function App() {
 
       </nav>
 
-      {/* SLIDING BANNER */}
+      {/* HERO BANNER */}
 
       <div className="hero">
 
-        <img
-          src={banners[currentImage]}
-          className="hero-image"
-        />
+        {banners.length > 0 ? (
+
+          <img
+            src={`http://127.0.0.1:8000${banners[currentImage].image}`}
+            alt="banner"
+            className="hero-image"
+          />
+
+        ) : (
+
+          <h1 style={{ color: "white" }}>
+            Loading Banner...
+          </h1>
+
+        )}
 
       </div>
 
@@ -74,11 +101,9 @@ function App() {
 
         <div className="categories">
 
-          {/* RINGS */}
-
           <div className="card">
 
-            <img src={ring} />
+            <img src={ring} alt="" />
 
             <h2>Gold Rings</h2>
 
@@ -88,11 +113,9 @@ function App() {
 
           </div>
 
-          {/* NECKLACE */}
-
           <div className="card">
 
-            <img src={necklace} />
+            <img src={necklace} alt="" />
 
             <h2>Diamond Necklace</h2>
 
@@ -102,11 +125,9 @@ function App() {
 
           </div>
 
-          {/* EARRINGS */}
-
           <div className="card">
 
-            <img src={earring} />
+            <img src={earring} alt="" />
 
             <h2>Luxury Earrings</h2>
 
@@ -120,30 +141,10 @@ function App() {
 
       </div>
 
-      {/* FOOTER */}
-
-      <div className="footer">
-
-        <div className="footer-box">
-          <h3>Free Shipping</h3>
-          <p>On all orders</p>
-        </div>
-
-        <div className="footer-box">
-          <h3>Certified Jewelry</h3>
-          <p>100% Original</p>
-        </div>
-
-        <div className="footer-box">
-          <h3>Secure Payment</h3>
-          <p>Safe Checkout</p>
-        </div>
-
-      </div>
-
     </div>
 
   )
+
 }
 
 export default App
